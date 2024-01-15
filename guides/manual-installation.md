@@ -19,9 +19,11 @@ For other installation options, check:
 
 ### Install prometheus (Optional)
 
-[Prometheus](https://prometheus.io/) allows trento to collect metrics from the monitored hosts. It is not required to run trento, but it is
-recommended. At the time of this writing, there is no officially supported Prometheus package in SLES 15 SP5. However, there are a few options to
-install it:
+By default, trento will display a series of charts for each host with useful information about it's CPU load, memory and other important metrics. If
+you want to disable this feature, set the `CHARTS_ENABLED` env variable to `false` when running the `trento-web` container. On the other hand, to keep
+it enabled, make sure to install [Prometheus](https://prometheus.io/) to allow trento to collect metrics from the monitored hosts. It is not required
+to run trento, but it is recommended. At the time of this writing, there is no officially supported Prometheus package in SLES 15 SP5. However, there
+are a few options to install it:
 
 #### Option 1: Use existing installation
 
@@ -263,6 +265,7 @@ docker run -d --name wanda \
 #### Install trento-web on docker:
 
 > Note: Be sure to change the `ADMIN_USERNAME` and `ADMIN_PASSWORD`, these are the credentials that will be required to login to the trento-web UI.
+> Note: Be sure to add `CHARS_ENABLED=false` if you don't want to use the charts feature or didn't install prometheus.
 
 ```bash
 docker run -d \
