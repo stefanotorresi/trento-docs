@@ -80,13 +80,14 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
       
           git clone https://x-access-token:${{ secrets.DOC_UNVERSIONED_PAT }}@github.com/EMaksy/doc-unversioned.git
+          git fetch origin
+          git checkout main          
           cd doc-unversioned
           git checkout -b sync-docs-${{ github.run_id }}
-      
-          mkdir -p trento
+
           cp -r ../user-docs/trento/. trento/
-          git add trento/
-          git commit -m "Sync user-docs content to trento/ after CI success"
+          git add trento/*
+          git commit -m "Sync user-docs content to doc-unversioned trento/ after CI success"
           git push origin sync-docs-${{ github.run_id }}
       - name: Debug Repo
         run: echo "Running in $GITHUB_REPOSITORY"
