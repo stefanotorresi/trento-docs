@@ -2,7 +2,7 @@ include::generic-attributes.adoc[]
 include::product-attributes.adoc[]
 
 [[helm-event-pruning]]
-== A big change in adoc
+== A big change in adoc in a second commit
 
 The event pruning feature allows administrators to manage how long registered events are stored in the database and how often the expired events are removed.
 
