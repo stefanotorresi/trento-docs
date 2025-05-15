@@ -84,12 +84,12 @@ jobs:
           cd doc-unversioned
           git fetch origin
           git checkout main          
-          git checkout -b sync-docs-${{ github.run_id }}
+          git checkout -b sync-docs
 
           cp -r ../user-docs/trento/* trento/
           git add trento/*
           git commit -m "Sync user-docs content to doc-unversioned trento/ after CI success"
-          git push origin sync-docs-${{ github.run_id }}
+          git push origin sync-docs
       - name: Debug Repo
         run: echo "Running in $GITHUB_REPOSITORY"
       - name: Create Pull Request
@@ -97,6 +97,6 @@ jobs:
         with:
           token: ${{ secrets.DOC_UNVERSIONED_PAT }}
           title: "Sync docs after CI success"
-          body: "Triggered by workflow run ${{ github.run_id }}"
+          body: "Triggered by workflow run sync-docs"
           base: main
-          branch: sync-docs-${{ github.run_id }}
+          branch: sync-docs
